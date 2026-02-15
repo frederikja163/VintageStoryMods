@@ -1,0 +1,14 @@
+{
+    "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
+    "type": "Code",
+    "modid": "autodoor",
+    "name": "AutoDoor",
+    "authors": [
+        "FrederikIA"
+    ],
+    "description": "Auto open and closes doors, gates and trapdoors.",
+    "version": "1.0.0",
+    "dependencies": {
+        "game": "1.21.0"
+    }
+}
