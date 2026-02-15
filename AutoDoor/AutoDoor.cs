@@ -17,6 +17,11 @@ public sealed class AutoDoor : ModSystem
     private Regex _regex = new Regex("");
     private int _radius = 0;
 
+    public override bool ShouldLoad(EnumAppSide forSide)
+    {
+        return forSide == EnumAppSide.Server;
+    }
+
     public override void Start(ICoreAPI api)
     {
         Config config = null;
@@ -91,7 +96,6 @@ public sealed class AutoDoor : ModSystem
             // Try open doors within range.
             if (!_openedDoors.Contains(p) && _regex.IsMatch(b.GetPlacedBlockName(api.World, p)))
             {
-                // b.OnBlockInteractStart(api.World, player, new BlockSelection(pos, pos.FacingFrom(p), b));
                 Caller caller = new Caller()
                 {
                     Type = EnumCallerType.Player, Entity = player.Entity,
