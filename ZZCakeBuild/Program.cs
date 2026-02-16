@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using Cake.Common;
 using Cake.Common.IO;
 using Cake.Common.Tools.DotNet;
@@ -18,13 +20,21 @@ public static class Program
 {
     public static int Main(string[] args)
     {
-        return new CakeHost()
+        new CakeHost()
+            .UseContext<Speedometer>()
+            .Run(args);
+        new CakeHost()
             .UseContext<AutoDoor>()
             .Run(args);
+        return 0;
     }
 }
 
 public sealed class AutoDoor(ICakeContext context) : BuildContext("AutoDoor", context)
+{
+    
+}
+public sealed class Speedometer(ICakeContext context) : BuildContext("Speedometer", context)
 {
     
 }
@@ -104,7 +114,7 @@ public sealed class PackageTask : FrostingTask<BuildContext>
     public override void Run(BuildContext context)
     {
         context.EnsureDirectoryExists("../Releases");
-        context.CleanDirectory("../Releases");
+        // context.CleanDirectory("../Releases");
         context.EnsureDirectoryExists($"../Releases/{context.Name}");
         context.CopyFiles($"../{context.ProjectName}/bin/{context.BuildConfiguration}/Mods/mod/publish/*",
             $"../Releases/{context.Name}");

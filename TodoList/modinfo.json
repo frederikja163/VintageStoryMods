@@ -1,0 +1,17 @@
+{
+    "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
+    "type": "Code",
+    "modid": "todolist",
+    "name": "TodoList",
+    "authors": [
+        "FrederikIA"
+    ],
+    "description": "TodoList",
+    "version": "1.0.0",
+    "side": "Universal",
+    "requiredOnClient": true,
+    "requiredOnServer": false,
+    "dependencies": {
+        "game": "1.21.0"
+    }
+}

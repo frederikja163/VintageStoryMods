@@ -1,0 +1,17 @@
+{
+    "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
+    "type": "Code",
+    "modid": "speedometer",
+    "name": "Speedometer",
+    "authors": [
+        "FrederikIA"
+    ],
+    "description": "Speedometer to show how fast you are going, replaced the normal coordinate HUD.",
+    "version": "1.0.0",
+    "side": "Client",
+    "requiredOnClient": true,
+    "requiredOnServer": false,
+    "dependencies": {
+        "game": "1.21.0"
+    }
+}
