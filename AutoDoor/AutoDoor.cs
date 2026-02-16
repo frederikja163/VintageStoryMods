@@ -14,8 +14,7 @@ namespace VintageStoryMods;
 public sealed class AutoDoor : ModSystem
 {
     private readonly HashSet<BlockPos> _openedDoors = new();
-    private Regex _regex = new Regex("");
-    private int _radius = 0;
+    private Config _config = new Config();
 
     public override bool ShouldLoad(EnumAppSide forSide)
     {
@@ -24,7 +23,7 @@ public sealed class AutoDoor : ModSystem
 
     public override void Start(ICoreAPI api)
     {
-        Config config = null;
+        Config? config = null;
         try
         {
             config = api.LoadModConfig<Config>("AutoDoor.json");
@@ -34,14 +33,9 @@ public sealed class AutoDoor : ModSystem
             Mod.Logger.Error("Could not load config! Loading default settings instead.");
             Mod.Logger.Error(e);
         }
-
-        if (config is null)
-        {
-            config = new Config();
-        }
-
-        _regex = new Regex(config.Regex, RegexOptions.Compiled);
-        _radius = config.Radius;
+        
+        _config = config ?? new Config();
+        api.StoreModConfig(config, "AutoDoor.json");
     }
 
     public override void StartServerSide(ICoreServerAPI api)
@@ -60,23 +54,26 @@ public sealed class AutoDoor : ModSystem
     {
         _openedDoors.RemoveWhere(p =>
         {
-            float closeRadius = _radius + 1;
+            float closeRadius = _config.Radius + 1;
             Entity[] entities = api.World.GetIntersectingEntities(p, [new Cuboidf(-closeRadius, -closeRadius, -closeRadius, closeRadius, closeRadius + 1, closeRadius)],
-                e => e.Class == nameof(EntityPlayer) && e.Pos.AsBlockPos.ManhattenDistance(p) <= _radius + 1);
+                e => e.Class == nameof(EntityPlayer) && e.Pos.AsBlockPos.ManhattenDistance(p) <= _config.Radius + 1);
             if (entities.Any())
             {
                 return false;
             }
 
-            Block b = api.World.BlockAccessor.GetBlock(p);
-            Caller caller = new Caller()
+            if (_config.AutoClose)
             {
-                Type = EnumCallerType.Console
-            };
-            BlockSelection selection = new BlockSelection(p, BlockFacing.DOWN, b);
-            TreeAttribute activation = new();
-            activation.SetBool("opened", false);
-            b.Activate(api.World, caller, selection, activation);
+                Block b = api.World.BlockAccessor.GetBlock(p);
+                Caller caller = new Caller()
+                {
+                    Type = EnumCallerType.Console
+                };
+                BlockSelection selection = new BlockSelection(p, BlockFacing.DOWN, b);
+                TreeAttribute activation = new();
+                activation.SetBool("opened", false);
+                b.Activate(api.World, caller, selection, activation);
+            }
             return true;
         });
     }
@@ -84,26 +81,30 @@ public sealed class AutoDoor : ModSystem
     private void OpenDoors(ICoreAPI api, IPlayer player)
     {
         BlockPos pos = player.Entity.Pos.AsBlockPos;
-        BlockPos startPos = pos.AddCopy(-_radius, -_radius, -_radius);
-        BlockPos endPos = pos.AddCopy(_radius, _radius + 1, _radius);
+        BlockPos startPos = pos.AddCopy(-_config.Radius, -_config.Radius, -_config.Radius);
+        BlockPos endPos = pos.AddCopy(_config.Radius, _config.Radius + 1, _config.Radius);
         api.World.BlockAccessor.SearchBlocks(startPos, endPos, (b, p) =>
         {
-            if (player.Entity.Pos.AsBlockPos.ManhattenDistance(p) > _radius + 1)
+            if (player.Entity.Pos.AsBlockPos.ManhattenDistance(p) > _config.Radius + 1)
             {
                 return true;
             }
             
             // Try open doors within range.
-            if (!_openedDoors.Contains(p) && _regex.IsMatch(b.GetPlacedBlockName(api.World, p)))
+            string blockName = b.GetPlacedBlockName(api.World, p);
+            if (!_openedDoors.Contains(p) && _config.WhitelistRegex.IsMatch(blockName) && !_config.BlacklistRegex.IsMatch(blockName))
             {
-                Caller caller = new Caller()
+                if (_config.AutoOpen)
                 {
+                    Caller caller = new Caller()
+                    {
                     Type = EnumCallerType.Player, Entity = player.Entity,
-                };
-                BlockSelection selection = new BlockSelection(p, BlockFacing.DOWN, b);
-                TreeAttribute activation = new();
-                activation.SetBool("opened", true);
-                b.Activate(api.World, caller, selection, activation);
+                    };
+                    BlockSelection selection = new BlockSelection(p, BlockFacing.DOWN, b);
+                    TreeAttribute activation = new();
+                    activation.SetBool("opened", true);
+                    b.Activate(api.World, caller, selection, activation);
+                }
                 _openedDoors.Add(p.Copy());
             }
             return true;
