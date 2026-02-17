@@ -44,10 +44,10 @@ public sealed class AutoDoor : ModSystem
         _config = config ?? new Config();
         api.StoreModConfig(_config, "AutoDoor.json");
         
-        _whitelistOpenRegex = new Regex(config.WhitelistOpen, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
-        _blacklistOpenRegex = new Regex(config.BlacklistOpen, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
-        _whitelistCloseRegex = new Regex(config.WhitelistClose, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
-        _blacklistCloseRegex = new Regex(config.BlacklistClose, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
+        _whitelistOpenRegex = new Regex(_config.WhitelistOpen, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
+        _blacklistOpenRegex = new Regex(_config.BlacklistOpen, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
+        _whitelistCloseRegex = new Regex(_config.WhitelistClose, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
+        _blacklistCloseRegex = new Regex(_config.BlacklistClose, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
     }
 
     public override void StartServerSide(ICoreServerAPI api)
