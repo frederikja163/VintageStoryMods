@@ -7,7 +7,7 @@
         "FrederikIA"
     ],
     "description": "Auto open and closes doors, gates and trapdoors.",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "side": "Server",
     "requiredOnServer": true,
     "requiredOnClient": false,

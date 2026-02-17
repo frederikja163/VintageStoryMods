@@ -5,18 +5,16 @@ namespace VintageStoryMods;
 
 public sealed class Config
 {
-    private Regex? _whitelistRegex;
-    private Regex? _blacklistRegex;
+    public string WhitelistOpen { get; set; } = "([Dd]oor)|([Gg]ate)";
 
-    [JsonIgnore] public Regex WhitelistRegex => _whitelistRegex ??= new Regex(Whitelist, RegexOptions.Compiled);
+    public string BlacklistOpen { get; set; } = "([Rr]ust)";
+    
+    public string WhitelistClose { get; set; } = "([Dd]oor)|([Gg]ate)";
 
-    [JsonIgnore] public Regex BlacklistRegex => _blacklistRegex ??= new Regex(Blacklist, RegexOptions.Compiled);
+    public string BlacklistClose { get; set; } = "([Rr]ust)";
 
-    public string Whitelist { get; } = "([Dd]oor)|([Gg]ate)";
-
-    public string Blacklist { get; } = "([Rr]ust)";
-
-    public int Radius { get; } = 2;
-    public bool AutoOpen { get; } = true;
-    public bool AutoClose { get; } = true;
+    public int Radius { get; set; } = 2;
+    public bool AutoOpen { get; set; } = true;
+    public bool AutoClose { get; set; } = true;
+    public bool LeaveOpen { get; set; } = true;
 }
