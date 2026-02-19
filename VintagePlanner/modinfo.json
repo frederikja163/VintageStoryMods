@@ -1,15 +1,15 @@
 {
     "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
     "type": "Code",
-    "modid": "todolist",
-    "name": "TodoList",
+    "modid": "vintageplanner",
+    "name": "Vintage Planner",
     "authors": [
         "FrederikIA"
     ],
-    "description": "TodoList",
+    "description": "Planning tool for vintage story.",
     "version": "1.0.0",
     "side": "Universal",
-    "requiredOnClient": true,
+    "requiredOnClient": false,
     "requiredOnServer": false,
     "dependencies": {
         "game": "1.21.0"

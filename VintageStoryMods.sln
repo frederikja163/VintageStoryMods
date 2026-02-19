@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoDoor", "AutoDoor\AutoDo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeBuild", "ZZCakeBuild\CakeBuild.csproj", "{9981A224-24AB-425C-88AB-79B1699B49EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList", "TodoList\TodoList.csproj", "{3264BB97-E564-47F6-A6CE-CB88115ADA86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VintagePlanner", "VintagePlanner\VintagePlanner.csproj", "{3264BB97-E564-47F6-A6CE-CB88115ADA86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speedometer", "Speedometer\Speedometer.csproj", "{60FAFCD7-F73F-48ED-AE7B-842D9049652C}"
 EndProject
