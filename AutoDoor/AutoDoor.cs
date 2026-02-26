@@ -23,11 +23,6 @@ public sealed class AutoDoor : ModSystem
     private readonly Dictionary<object, bool> _doorStates = new();
     private Config _config = new Config();
 
-    public override bool ShouldLoad(EnumAppSide forSide)
-    {
-        return forSide == EnumAppSide.Server;
-    }
-
     public override void Start(ICoreAPI api)
     {
         Config? config = null;

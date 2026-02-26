@@ -1,6 +1,6 @@
 ﻿using Vintagestory.API.Client;
 
-namespace VintageStoryMods.Todo;
+namespace VintageStoryMods.Extensions;
 
 internal static class ElementBoundsExtensions
 {

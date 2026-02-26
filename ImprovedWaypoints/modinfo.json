@@ -1,0 +1,17 @@
+{
+    "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
+    "type": "Code",
+    "modid": "improvedwaypoints",
+    "name": "Improved Waypoints",
+    "authors": [
+        "FrederikIA"
+    ],
+    "description": "Improves waypoints with a lot of features.",
+    "version": "1.0.0",
+    "side": "Universal",
+    "requiredOnServer": false,
+    "requiredOnClient": false,
+    "dependencies": {
+        "game": "1.21.0"
+    }
+}

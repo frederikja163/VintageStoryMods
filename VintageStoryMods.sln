@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VintagePlanner", "VintagePl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speedometer", "Speedometer\Speedometer.csproj", "{60FAFCD7-F73F-48ED-AE7B-842D9049652C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedWaypoints", "ImprovedWaypoints\ImprovedWaypoints.csproj", "{AD9A63BF-4DBD-4EC6-B228-BE04F845E525}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{60FAFCD7-F73F-48ED-AE7B-842D9049652C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60FAFCD7-F73F-48ED-AE7B-842D9049652C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60FAFCD7-F73F-48ED-AE7B-842D9049652C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD9A63BF-4DBD-4EC6-B228-BE04F845E525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD9A63BF-4DBD-4EC6-B228-BE04F845E525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD9A63BF-4DBD-4EC6-B228-BE04F845E525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD9A63BF-4DBD-4EC6-B228-BE04F845E525}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

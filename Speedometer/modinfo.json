@@ -6,8 +6,8 @@
     "authors": [
         "FrederikIA"
     ],
-    "description": "Speedometer to show how fast you are going, replaced the normal coordinate HUD.",
-    "version": "1.0.0",
+    "description": "Speedometer to show how fast you are going, extends the normal coordinate HUD.",
+    "version": "1.0.1",
     "side": "Client",
     "requiredOnClient": true,
     "requiredOnServer": false,

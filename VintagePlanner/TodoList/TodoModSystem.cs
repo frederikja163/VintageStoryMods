@@ -1,8 +1,11 @@
-﻿using Vintagestory.API.Client;
+﻿using System.Linq;
+using HarmonyLib;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Server;
+using Vintagestory.GameContent;
 
-namespace VintageStoryMods.Todo;
+namespace VintageStoryMods.TodoList;
 
 public sealed class TodoModSystem : ModSystem
 {
@@ -35,13 +38,20 @@ public sealed class TodoModSystem : ModSystem
 
     private void StartClient(ICoreClientAPI api)
     {
-        todoDialog = new TodoDialog(api);
-        api.Gui.RegisterDialog(todoDialog);
         api.Input.RegisterHotKey("opentodo", "Open Todo", GlKeys.O, HotkeyType.GUIOrOtherControls);
         #if DEBUG
         api.ChatCommands.Create("r").RequiresPlayer().RequiresPrivilege(Privilege.chat).HandleWith(_ =>
         {
-            todoDialog.Reload();
+            GuiDialog dialog = api.Gui.LoadedGuis.FirstOrDefault(g => g is TodoDialog);
+            if (dialog is not null)
+            {
+                api.Gui.TriggerDialogClosed(dialog);
+                api.Gui.LoadedGuis.Remove(dialog);
+                api.Gui.OpenedGuis.Remove(dialog);
+            }
+            todoDialog = new TodoDialog(api);
+            api.Gui.RegisterDialog(todoDialog);
+            todoDialog.TryOpen(true);
             return TextCommandResult.Success();
         });
         #endif //DEBUG

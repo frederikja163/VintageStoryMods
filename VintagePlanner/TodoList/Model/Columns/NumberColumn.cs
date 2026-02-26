@@ -1,4 +1,4 @@
-﻿namespace VintageStoryMods.Todo.Columns;
+﻿namespace VintageStoryMods.TodoList.Model.Columns;
 
 // internal sealed class NumberColumn(string name) : ColumnBase(name, 0)
 // {

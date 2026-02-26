@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Vintagestory.API.Client;
-
-namespace VintageStoryMods.Todo.Columns;
+﻿namespace VintageStoryMods.TodoList.Model.Columns;
 
 // internal sealed class IntegerColumn(string name) : ColumnBase(name, 0)
 // {
